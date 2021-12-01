@@ -1,16 +1,17 @@
 # advent-of-code-2021
 
-Här finns möjlighet att lägga upp sina lösningar och sin aktuella poäng för (advent of code 2021)[https://adventofcode.com/2021]. För att publicera en lösning - skapa en katalog med ditt namn eller din tag i detta repo.
+Här finns möjlighet att lägga upp sina lösningar av (advent of code 2021)[https://adventofcode.com/2021]. För att publicera en lösning - skapa en katalog med ditt namn eller din tag i detta repo.
 
-# leader board
-| Namn / Github tag                                         | Poäng         |
-| --------------------------------------------------------- | ------------- |
-| [@codecontemplator](https://github.com/codecontemplator)  | 0             |
-| [@IdaAhl](https://github.com/IdaAhl)                      | 0             |
-| [@martincollector](https://github.com/martincollector)    | 0             |
-| [@perno](https://github.com/perno)                        | 0             |
-| [@tehho](https://github.com/tehho)                        | 0             |
-| Peter                                                     | 0             |
-| Johan                                                     | 0             |
-| Benjamin                                                  | 0             |
-| Mattias                                                   | 0             |
+# medelemmar
+| Namn / Github tag                                         |
+| --------------------------------------------------------- |
+| [@codecontemplator](https://github.com/codecontemplator)  |
+| [@IdaAhl](https://github.com/IdaAhl)                      |
+| [@martincollector](https://github.com/martincollector)    |
+| [@perno](https://github.com/perno)                        |
+| [@tehho](https://github.com/tehho)                        |
+| Peter                                                     |
+| Johan                                                     |
+| Benjamin                                                  |
+| Mattias                                                   |
+| [@5eb](https://github.com/5eb)                            |
