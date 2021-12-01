@@ -2,7 +2,9 @@
 
 import Data.Function ((&))
 import Data.Functor ((<&>))
-import Data.List (unfoldr)
+
+(|>) = (&)
+(||>) = (<&>)
 
 windowed :: Int -> [a] -> [[a]]
 windowed size ls =
@@ -12,9 +14,6 @@ windowed size ls =
          if length ls >= size then
             (take size ls) : windowed size xs
          else windowed size xs
-
-(|>) = (&)
-(||>) = (<&>)
 
 data Direction = Increased | Decreased | Unchanged deriving Eq
 
