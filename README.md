@@ -2,7 +2,7 @@
 
 Här finns möjlighet att lägga upp sina lösningar av (advent of code 2021)[https://adventofcode.com/2021]. För att publicera en lösning - skapa en katalog med ditt namn eller din tag i detta repo.
 
-# medelemmar
+# medlemmar
 | Namn / Github tag                                         |
 | --------------------------------------------------------- |
 | [@codecontemplator](https://github.com/codecontemplator)  |
