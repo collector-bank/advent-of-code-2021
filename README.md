@@ -5,7 +5,7 @@ Här finns möjlighet att lägga upp sina lösningar av [advent of code 2021](ht
 # medlemmar
 | Namn / Github tag                                         | Solutions                                                                         |
 | --------------------------------------------------------- |-----------------------------------------------------------------------------------|
-| [@codecontemplator](https://github.com/codecontemplator)  | https://github.com/collector-bank/advent-of-code-2021/tree/main/codecontemplator  |
+| [@codecontemplator](https://github.com/codecontemplator)  | [./codecontemplator](./codecontemplator)                                          |
 | [@IdaAhl](https://github.com/IdaAhl)                      |                                                                                   |
 | [@martincollector](https://github.com/martincollector)    |                                                                                   |
 | [@perno](https://github.com/perno)                        |                                                                                   |
