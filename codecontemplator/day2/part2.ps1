@@ -1,7 +1,7 @@
 $rows = Get-Content .\input.txt
-$data = $rows | % { $dir, $amount = $_.split(' '); [PSCustomObject]@{ Dir = $dir; Amount =$amount } }
-$data | % {[int]$x = 0; [int]$y=0; [int]$aim = 0} {
-    $d = [int]$_.Amount 
+$data = $rows | % { $dir, $amount = $_.split(' '); [PSCustomObject]@{ Dir = $dir; Amount = [int]$amount } }
+$data | % { $x = 0; $y=0; $aim = 0} {
+    $d = $_.Amount 
     switch ($_.Dir) {
         "forward" { $x += $d; $y += $aim * $d }
         "down" { $aim += $d }
