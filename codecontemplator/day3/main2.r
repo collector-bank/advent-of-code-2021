@@ -1,3 +1,5 @@
+solve <- function(input <- read.table("input.txt", header=FALSE)
+
 input <- read.table("input.txt", header=FALSE)
 
 getMostFrequent <- function(vec) {
@@ -17,25 +19,19 @@ binVectorToNumeric <- function(bv) {
   sum(rev(bv) * pv)
 }
 
-maskToIndices <- function(mask) {
-  result <- mask * (1:(length(mask)))
-  result[result != 0]
-}
-
-solve <- function(getByFrequency) {
+solve <- function(getPivot) {
   rowMask <- rep(1,nrow(input))
-  for(i in 1:(ncol(input))) {
+  for(i in 1:ncol(input)) {
     if (sum(rowMask) == 1) 
       break;
 
     currentColumn <- input[, i]
-    v <- getByFrequency(currentColumn[maskToIndices(rowMask)])
+    v <- getPivot(currentColumn[rowMask != 0])
     rowMask <- rowMask * (currentColumn == v)
   }
 
-  d <- input[maskToIndices(rowMask),]
+  d <- input[rowMask != 0,]
   binVectorToNumeric(d)
 }
 
 solve(getMostFrequent) * solve(getLeastFrequent)  # 4375225
-
