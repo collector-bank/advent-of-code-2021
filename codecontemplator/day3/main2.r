@@ -25,12 +25,12 @@ maskToIndices <- function(mask) {
 solve <- function(getByFrequency) {
   rowMask <- rep(1,nrow(input))
   for(i in 1:(ncol(input))) {
-    if (sum(rowMask == 1) == 1) 
+    if (sum(rowMask) == 1) 
       break;
 
     currentColumn <- input[, i]
-    mf <- getByFrequency(currentColumn[maskToIndices(rowMask)])
-    rowMask <- rowMask * (currentColumn == mf)
+    v <- getByFrequency(currentColumn[maskToIndices(rowMask)])
+    rowMask <- rowMask * (currentColumn == v)
   }
 
   d <- input[maskToIndices(rowMask),]
