@@ -63,7 +63,6 @@ def find_line(all_lines, neg=False):
 
 
 def part_2(lines):
-    diagnostics_report = bit_lines(lines)
     oxygen_rating = join_bits(find_line(bit_lines(lines)))
     scrubber_rating = join_bits(find_line(bit_lines(lines), neg=True))
     return oxygen_rating, scrubber_rating, oxygen_rating * scrubber_rating

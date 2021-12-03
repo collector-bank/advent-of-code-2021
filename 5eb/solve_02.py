@@ -53,4 +53,5 @@ def find_destination3(lines):
         for instruction, agg_state in zip(instructions, agg)])
     return agg[-1]['forward'], depth
 
+
 assert find_destination3(test_data) == (15, 60)
