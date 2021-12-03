@@ -11,7 +11,7 @@ test_data = """forward 5
 """.splitlines()
 
 
-with open('in02') as fh:
+with open('input02') as fh:
     indata = fh.read().splitlines()
 
 
