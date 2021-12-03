@@ -19,7 +19,7 @@ binVectorToNumeric <- function(bv) {
 
 maskToIndices <- function(mask) {
   result <- mask * (1:(length(mask)))
-  result[! result %in% c(0)]
+  result[result != 0]
 }
 
 solve <- function(getByFrequency) {
