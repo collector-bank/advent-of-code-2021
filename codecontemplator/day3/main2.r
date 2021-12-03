@@ -1,5 +1,3 @@
-solve <- function(input <- read.table("input.txt", header=FALSE)
-
 input <- read.table("input.txt", header=FALSE)
 
 getMostFrequent <- function(vec) {
