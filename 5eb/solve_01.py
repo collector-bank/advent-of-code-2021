@@ -9,7 +9,7 @@ def count_increasing(measurements):
 test_data = [199, 200, 208, 210, 200, 207, 240, 269, 260, 263]
 assert count_increasing(test_data) == 7
 
-with open('in01') as fh:
+with open('input01') as fh:
     measurements = [int(n) for n in fh.read().splitlines()]
 print(count_increasing(measurements))
 

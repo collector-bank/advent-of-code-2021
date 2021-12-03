@@ -11,7 +11,7 @@ test_data = """forward 5
 """.splitlines()
 
 
-with open('in02') as fh:
+with open('input02') as fh:
     indata = fh.read().splitlines()
 
 
@@ -52,5 +52,6 @@ def find_destination3(lines):
         (agg_state['down'] - agg_state['up']) * instruction['forward']
         for instruction, agg_state in zip(instructions, agg)])
     return agg[-1]['forward'], depth
+
 
 assert find_destination3(test_data) == (15, 60)
