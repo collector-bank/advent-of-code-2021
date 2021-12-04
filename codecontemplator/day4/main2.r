@@ -49,4 +49,4 @@ boards <- lapply(board_chunks, function(board_chunk) {
     )
 });
 
-solve(num_seq, boards)  # 1890
+solve(num_seq, boards)  # 26936
