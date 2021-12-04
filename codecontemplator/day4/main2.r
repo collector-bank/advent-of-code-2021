@@ -17,13 +17,11 @@ get_result <- function(board, v) {
 solve <- function(num_seq, boards) {
     winners <- rep(1, length(boards))
     for (v in num_seq) {
-        print(v)
         for (i in 1:length(boards)) {
             if (winners[i] == 1) {
                 boards[[i]] <- mark_value(boards[[i]], v)
                 if (is_done(boards[[i]])) {
                     winners[i] <- 0
-                    print(sprintf("winner %d", i));
                     if (sum(winners) == 0) {
                         return(get_result(boards[[i]], v))
                     }
