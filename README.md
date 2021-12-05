@@ -14,5 +14,5 @@ Här finns möjlighet att lägga upp sina lösningar av [advent of code 2021](ht
 | Johan                                                     |                                                                                   |
 | Benjamin                                                  |                                                                                   |
 | Mattias                                                   |                                                                                   |
-| [@5eb](https://github.com/5eb)                            |                                                                                   |
-| [@jimmyelwing](https://github.com/jimmyelwing)  | [./jimmyelwing](./jimmyelwing)                                          |            |                                                                                   |
+| [@5eb](https://github.com/5eb)                            | [./5eb](./5eb)                                                                    |
+| [@jimmyelwing](https://github.com/jimmyelwing)            | [./jimmyelwing](./jimmyelwing)                                                    |                                                                                   |
