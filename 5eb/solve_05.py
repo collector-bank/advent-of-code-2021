@@ -21,12 +21,12 @@ def read_input(fn):
 
 
 def is_horizontal(coords):
-    (x1, y1), (x2, y2) = coords
+    (_, y1), (_, y2) = coords
     return y1 == y2
 
 
 def is_vertical(coords):
-    (x1, y1), (x2, y2) = coords
+    (x1, _), (x2, _) = coords
     return x1 == x2
 
 
