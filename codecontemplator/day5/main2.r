@@ -14,7 +14,7 @@ for (i in 1:n) {
     y1 <- ys[i, 1]
     y2 <- ys[i, 2]
 
-    cs <- cbind(c(y1:y2), c(x1:x2))
+    cs <- cbind(y1:y2, x1:x2)
     m[cs] <- m[cs] + 1
 }
 
