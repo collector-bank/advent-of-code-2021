@@ -15,15 +15,12 @@ for (i in 1:n) {
     x2 <- xsi[[2]]
     y1 <- ysi[[1]]
     y2 <- ysi[[2]]
-    # print(sprintf("%d,%d -> %d,%d", x1, y1, x2, y2))
-    if (x1 == x2) {
-        for (y in y1:y2) {
-            m[y, x1] <- m[y, x1] + 1
-        }
-    } else if (y1 == y2) {
-        for (x in x1:x2) {
-            m[y1, x] <- m[y1, x] + 1
-        }
+
+    cs <- cbind(c(y1:y2), c(x1:x2))
+    for (j in 1:nrow(cs)) {
+        y <- cs[j, 1]
+        x <- cs[j, 2]
+        m[y, x] <- m[y, x] + 1
     }
 }
 
