@@ -4,6 +4,7 @@ import numpy as np
 
 
 zeros = partial(np.zeros, dtype=int)
+eye = partial(np.eye, dtype=int)
 
 
 def parse_coords(txtline):
@@ -42,38 +43,36 @@ def filter_gte(than, arr):
 def part1(filename):
     coords = [parse_coords(line) for line in read_input(filename)]
     _, xmax, _, ymax = find_span(coords)
-    board = zeros((ymax + 1, xmax + 1, len(coords) + 1))
-    for i, coord in enumerate(coords):
+    board = zeros((ymax + 1, xmax + 1))
+    for coord in coords:
         (x1, y1), (x2, y2) = coord
         if is_horizontal(coord):
-            board[y1, min(x1, x2):max(x1, x2) + 1, i] = 1
+            board[y1, min(x1, x2):max(x1, x2) + 1] += 1
         if is_vertical(coord):
-            board[min(y1, y2):max(y1, y2) + 1, x1, i] = 1
-    vent_arr = np.sum(board, axis=2)
-    return np.sum(filter_gte(2, vent_arr))
+            board[min(y1, y2):max(y1, y2) + 1, x1] += 1
+    return np.sum(filter_gte(2, board))
 
 
 def part2(filename):
     coords = [parse_coords(line) for line in read_input(filename)]
     _, xmax, _, ymax = find_span(coords)
-    board = zeros((ymax + 1, xmax + 1, len(coords) + 1))
-    for i, coord in enumerate(coords):
+    board = zeros((ymax + 1, xmax + 1))
+    for coord in coords:
         (x1, y1), (x2, y2) = coord
         lower_x = min(x1, x2)
         upper_x = max(x1, x2) + 1
         lower_y = min(y1, y2)
         upper_y = max(y1, y2) + 1
         if is_horizontal(coord):
-            board[y1, lower_x:upper_x, i] = 1
+            board[y1, lower_x:upper_x] += 1
         elif is_vertical(coord):
-            board[lower_y:upper_y, x1, i] = 1
+            board[lower_y:upper_y, x1] += 1
         else:
-            diagonal = np.eye(upper_x - lower_x)
+            diagonal = eye(upper_x - lower_x)
             if not ((x1 < x2 and y1 < y2) or (x1 > x2 and y1 > y2)):
                 diagonal = diagonal[::-1]
-            board[lower_y:upper_y, lower_x:upper_x, i] = diagonal
-    vent_arr = np.sum(board, axis=2)
-    return np.sum(filter_gte(2, vent_arr))
+            board[lower_y:upper_y, lower_x:upper_x] += diagonal
+    return np.sum(filter_gte(2, board))
 
 
 def main():
