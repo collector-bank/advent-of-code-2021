@@ -33,7 +33,7 @@ def is_vertical(coords):
 def find_span(coords):
     xs = [x1 for (x1, _), (_, _) in coords] + [x2 for (_, _), (x2, _) in coords]
     ys = [y1 for (_, y1), (_, _) in coords] + [y2 for (_, _), (_, y2) in coords]
-    return min(xs), max(xs), min(ys), max(ys)
+    return max(xs), max(ys)
 
 
 def filter_gte(than, arr):
@@ -42,7 +42,7 @@ def filter_gte(than, arr):
 
 def part1(filename):
     coords = [parse_coords(line) for line in read_input(filename)]
-    _, xmax, _, ymax = find_span(coords)
+    xmax, ymax = find_span(coords)
     board = zeros((ymax + 1, xmax + 1))
     for coord in coords:
         (x1, y1), (x2, y2) = coord
@@ -55,7 +55,7 @@ def part1(filename):
 
 def part2(filename):
     coords = [parse_coords(line) for line in read_input(filename)]
-    _, xmax, _, ymax = find_span(coords)
+    xmax, ymax = find_span(coords)
     board = zeros((ymax + 1, xmax + 1))
     for coord in coords:
         (x1, y1), (x2, y2) = coord
