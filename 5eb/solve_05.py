@@ -3,7 +3,6 @@ from functools import partial
 import numpy as np
 
 
-npsum = partial(np.sum, dtype=int)
 zeros = partial(np.zeros, dtype=int)
 
 
@@ -50,7 +49,7 @@ def part1(filename):
             board[y1, min(x1, x2):max(x1, x2) + 1, i] = 1
         if is_vertical(coord):
             board[min(y1, y2):max(y1, y2) + 1, x1, i] = 1
-    vent_arr = npsum(board, axis=2)
+    vent_arr = np.sum(board, axis=2)
     return np.sum(filter_gte(2, vent_arr))
 
 
@@ -70,12 +69,10 @@ def part2(filename):
             board[lower_y:upper_y, x1, i] = 1
         else:
             diagonal = np.eye(upper_x - lower_x)
-            if (x1 < x2 and y1 < y2) or (x1 > x2 and y1 > y2):
-                pass
-            else:
+            if not ((x1 < x2 and y1 < y2) or (x1 > x2 and y1 > y2)):
                 diagonal = diagonal[::-1]
             board[lower_y:upper_y, lower_x:upper_x, i] = diagonal
-    vent_arr = npsum(board, axis=2)
+    vent_arr = np.sum(board, axis=2)
     return np.sum(filter_gte(2, vent_arr))
 
 
