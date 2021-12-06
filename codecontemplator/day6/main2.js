@@ -3,19 +3,6 @@ const n = 256
 const buffer = Array(9).fill(0)
 input.forEach(v => buffer[v] += 1)
 
-function print() {
-    var s = "";
-    for(var i = 0; i<buffer.length; ++i) {
-        const count = buffer[i]
-        for(var j = 0; j<count; ++j) {
-            s += i.toString();
-            s += ","
-        }    
-    }
-    console.log(s)
-}
-
-
 for(var i = 0; i<n; ++i) {
     var zv = buffer.shift()
     buffer[6] += zv
