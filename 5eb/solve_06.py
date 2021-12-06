@@ -43,6 +43,7 @@ def main():
     assert part2('input06_test', 18) == 26
     assert part2('input06_test', 80) == 5934
     assert part2('input06_test', 256) == 26984457539
+    print(part2('input06', 80))
     print(part2('input06', 256))
 
 
