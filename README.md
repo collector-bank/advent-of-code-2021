@@ -9,7 +9,7 @@ Här finns möjlighet att lägga upp sina lösningar av [advent of code 2021](ht
 | [@IdaAhl](https://github.com/IdaAhl)                      |                                                                                   |
 | [@martincollector](https://github.com/martincollector)    |                                                                                   |
 | [@perno](https://github.com/perno)                        |                                                                                   |
-| [@tehho](https://github.com/tehho)                        |                                                                                   |
+| [@tehho](https://github.com/tehho)                        | [./tehho](./tehho)                                                                |
 | Peter                                                     |                                                                                   |
 | Johan                                                     |                                                                                   |
 | Benjamin                                                  |                                                                                   |
