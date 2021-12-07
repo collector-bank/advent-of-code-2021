@@ -41,7 +41,7 @@ namespace AdventOfCode
       var list = data[0].Split(',').Select(int.Parse).ToList();
       list.Sort();
 
-      var nodes = list.Distinct().ToList();
+      var nodes = Enumerable.Range(list.Min(), list.Max()).ToList();
       
       var distance = list.Select(x => 
         {
