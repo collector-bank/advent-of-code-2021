@@ -87,47 +87,55 @@ namespace AdventOfCode
           return string.Join("", s.ToArray());
         }).ToList();
 
-        var mapping = new Dictionary<string, int>();
+        var mapping = new string[10];
 
-        mapping.Add(row.Single(x => x.Length == numbers[1].Length), 1);
-        mapping.Add(row.Single(x => x.Length == numbers[4].Length), 4);
-        mapping.Add(row.Single(x => x.Length == numbers[7].Length), 7);
-        mapping.Add(row.Single(x => x.Length == numbers[8].Length), 8);
+        mapping[1] = row.Single(x => x.Length == numbers[1].Length);
+        mapping[4] = row.Single(x => x.Length == numbers[4].Length);
+        mapping[7] = row.Single(x => x.Length == numbers[7].Length);
+        mapping[8] = row.Single(x => x.Length == numbers[8].Length);
 
-        foreach (var temp in row.Where(x => x.Length == 6))
+        var list2 = row.Where(x => x.Length == 6).ToList();
+        foreach (var temp in list2)
         {
-          if (mapping.Where(x => x.Value == 1).SelectMany(x => x.Key.Split("")).Count(x => temp.Contains(x)) == 1)
+          bool isSix = mapping[1].Count(x => temp.Contains(x)) == 1;
+          var isNine = mapping[4].Count(x => temp.Contains(x)) == 4;
+
+          if (isSix)
           {
-            mapping.Add(temp, 6);
+            mapping[6] = temp;
           }
-          else if (mapping.Where(x => x.Value == 4).SelectMany(x => x.Key.Split("")).Count(x => temp.Contains(x)) == 4)
+          else if (isNine)
           {
-            mapping.Add(temp, 9);
+            mapping[9] = temp;
           }
           else 
           {
-            mapping.Add(temp, 0);
+            mapping[0] = temp;
           }
         }
 
-        foreach (var temp in row.Where(x => x.Length == 5))
+
+        list2 = row.Where(x => x.Length == 5).ToList();
+        foreach (var temp in list2)
         {
-          if (temp.Split("").Count(x => mapping.Single(x => x.Value == 6).Key.Contains(x)) == 5)
+          if (temp.Count(x => mapping[6].Contains(x)) == 5)
           {
-            mapping.Add(temp, 5);
+            mapping[5] = temp;
           }
-          else if (mapping.Where(x => x.Value == 1).SelectMany(x => x.Key.Split("")).Count(x => temp.Contains(x)) == 2)
+          else if (mapping[1].Count(x => temp.Contains(x)) == 2)
           {
-            mapping.Add(temp, 3);
+            mapping[3] = temp;
           }
           else
           {
-            mapping.Add(temp, 2);
+            mapping[2] = temp;
           }
         }
 
+        var mappingList = mapping.ToList();
+
         var number = string.Join("", display.Select(x => {
-          return mapping[x].ToString();
+          return mappingList.IndexOf(x);
         }).ToArray());
         
         return number;
