@@ -1,2 +1,6 @@
 .byebug_history
 .DS_Store
+.vs
+bin
+debug
+obj
