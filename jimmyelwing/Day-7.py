@@ -2,7 +2,7 @@ def main():
     # testInputs = "16,1,2,0,4,2,7,1,2,14".split(",")
     # inputs = list(map(int, testInputs))
 
-    inputs = open("inputs/day-seven.txt", "r").read().split(",")
+    inputs = open("inputs/day-7.txt", "r").read().split(",")
     inputs = list(map(int, inputs))
 
     inputs.sort()

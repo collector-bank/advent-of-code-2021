@@ -1,5 +1,5 @@
 def main():
-    inputs = open("inputs/day-four.txt", "r").read().split("\n")
+    inputs = open("inputs/day-4.txt", "r").read().split("\n")
     drawnNumbersInput = inputs[0].split(",")
     boardInputs = inputs[1:len(inputs)]
 

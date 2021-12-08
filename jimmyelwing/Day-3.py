@@ -1,5 +1,5 @@
 def main():
-    inputs = open("inputs/day-three-inputs.txt", "r").read().split("\n")
+    inputs = open("inputs/day-3.txt", "r").read().split("\n")
     partOneResult = PartOne(inputs)
     partTwoResult = PartTwo(inputs)
 
