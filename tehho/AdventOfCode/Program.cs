@@ -19,19 +19,33 @@ var types = type.Assembly.GetTypes()
 
 foreach (var genericType in types)
 {
-  var instance = Activator.CreateInstance(genericType);
-  var member = genericType.GetProperty("Folder");
-  var day = member!.GetValue(instance);
-  string[] data2 = File.ReadAllLines("../data/" + day + "/data.raw");
+  try
+  {
+    var instance = Activator.CreateInstance(genericType);
+    var member = genericType.GetProperty("Folder");
+    var day = member!.GetValue(instance);
 
-  // Write to console "Day X" where X is the day number
-  Console.WriteLine("Day " + day);
+    if (!File.Exists("../data/" + day + "/data.raw"))
+    {
+      Console.WriteLine("Unable to fetch data for day " + member);
+      continue;
+    }      
+    
+    string[] data2 = File.ReadAllLines("../data/" + day + "/data.raw");
 
-  var method = genericType.GetMethod("Logic");
-  var result = method!.Invoke(instance, new object[] { data2 });
-  Console.WriteLine($"Sum1: {result}");
-  
-  method = genericType.GetMethod("Logic2");
-  result = method!.Invoke(instance, new object[] { data2 });
-  Console.WriteLine($"Sum2: {result}");
+    // Write to console "Day X" where X is the day number
+    Console.WriteLine("Day " + day);
+
+    var method = genericType.GetMethod("Logic");
+    var result = method!.Invoke(instance, new object[] { data2 });
+    Console.WriteLine($"Sum1: {result}");
+    
+    method = genericType.GetMethod("Logic2");
+    result = method!.Invoke(instance, new object[] { data2 });
+    Console.WriteLine($"Sum2: {result}");
+  }
+  catch (System.Exception)
+  {
+      Console.WriteLine("Sum ting wen wong");
+  }
 }
