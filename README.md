@@ -9,10 +9,11 @@ Här finns möjlighet att lägga upp sina lösningar av [advent of code 2021](ht
 | [@IdaAhl](https://github.com/IdaAhl)                      |                                                                                   |
 | [@martincollector](https://github.com/martincollector)    |                                                                                   |
 | [@perno](https://github.com/perno)                        |                                                                                   |
-| [@tehho](https://github.com/tehho)                        |                                                                                   |
+| [@tehho](https://github.com/tehho)                        | [./tehho](./tehho)                                                                |
 | Peter                                                     |                                                                                   |
 | Johan                                                     |                                                                                   |
 | Benjamin                                                  |                                                                                   |
 | Mattias                                                   |                                                                                   |
 | [@5eb](https://github.com/5eb)                            | [./5eb](./5eb)                                                                    |
-| [@jimmyelwing](https://github.com/jimmyelwing)            | [./jimmyelwing](./jimmyelwing)                                                    |                                                                                   |
+| [@jimmyelwing](https://github.com/jimmyelwing)            | [./jimmyelwing](./jimmyelwing)                                                    |
+| [@andre-fagerberg](https://github.com/andre-fagerberg)    | [./andre_fagerberg](./andre_fagerberg)                                            |
