@@ -1,11 +1,7 @@
-import itertools 
-import numpy 
-from collections import Counter 
-
 def main():
     # input = "3,4,3,1,2"
     # input = input.split(",")
-    input = open("inputs/day-six.txt", "r").read().split(",")
+    input = open("inputs/day-6.txt", "r").read().split(",")
     fishes = list(map(int,input))
 
     day = 0
