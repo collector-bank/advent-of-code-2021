@@ -13,8 +13,9 @@ def main():
     print("Getting results for part two")
     resultPartTwo = PartTwo(inputs)
 
-    print(resultPartOne) # 37 / 325528
-    print(resultPartTwo) # 168 / 85015836
+    print(resultPartOne)  # 37 / 325528
+    print(resultPartTwo)  # 168 / 85015836
+
 
 def CalculateFuel(start, end):
     fuel = 0
@@ -24,6 +25,7 @@ def CalculateFuel(start, end):
         total += fuel
     return total
 
+
 def PartOne(inputs):
     summary = {}
 
@@ -32,14 +34,12 @@ def PartOne(inputs):
         total = 0
         for j in inputs:
             total += abs(j - count)
-        
+
         summary[count] = total
 
     moves = list(summary.values())
-    moves.sort()
-    leastMove = moves[0]
+    return min(moves)
 
-    return leastMove
 
 def PartTwo(inputs):
     totalFuelUsed = {}
@@ -49,20 +49,27 @@ def PartTwo(inputs):
         total = 0
         for j in inputs:
             start, end = min(count, j), max(count, j)
-            fuel = CalculateFuel(start,end)
+            fuel = CalculateFuel(start, end)
             total += fuel
-        
+
         if any(totalFuelUsed):
             if list(totalFuelUsed.values())[-1] < total:
                 break
 
         totalFuelUsed[count] = total
-    
-    totalFuelList = list(totalFuelUsed.values())
-    totalFuelList.sort()
-    totalFuel = totalFuelList[0]
 
-    return totalFuel
+    totalFuelList = list(totalFuelUsed.values())
+    return min(totalFuelList)
+
+
+def total_fuel_cost(align_to, positions):
+    return sum(fuel_cost(align_to, position) for position in positions)
+
+
+def fuel_cost(align_to, position):
+    distance = abs(position - align_to)
+    return sum(range(distance + 1))
+
 
 if __name__ == "__main__":
     main()
