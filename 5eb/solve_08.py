@@ -1,6 +1,3 @@
-from collections import defaultdict
-
-
 def read_input(filename):
     with open(filename) as filehandle:
         indata = filehandle.read().splitlines()
@@ -19,12 +16,6 @@ digit_segments = {
     8: 'abcdefg',
     9: 'abcdfg',
 }
-
-lenseg_digits = defaultdict(set)
-for (d, segments) in digit_segments.items():
-    lenseg_digits[len(segments)].add(d)
-lenseg_digits = dict(lenseg_digits)
-
 distinct_lengths = {
     2: 1,
     3: 7,
