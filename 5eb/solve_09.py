@@ -58,14 +58,13 @@ def part1(filename):
 
 def select_basin(basins_map, start_coord, map_shape):
     this_basin = numpy.zeros(map_shape, dtype=int)
-    indicator = 1
     stack = {start_coord}
     while stack:
         position = stack.pop()
         if basins_map[position] == 1:
-            if this_basin[position] == 0:  # Avoid painting the same pixels infinitely!
+            if this_basin[position] == 0:  # Only paint once!
+                this_basin[position] = 1
                 stack |= set(neighbour_indexes(*position, map_shape))
-            this_basin[position] = 1
     return this_basin
 
 
