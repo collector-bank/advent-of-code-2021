@@ -56,21 +56,22 @@ def part1(filename):
     return total_risk_level(height_map)
 
 
-def select_basin(basin, start_coord, map_shape):
-    basin = basin.copy()  # Need to edit in place
-    indicator = 2
+def select_basin(basins_map, start_coord, map_shape):
+    this_basin = numpy.zeros(map_shape, dtype=int)
+    indicator = 1
     stack = {start_coord}
     while stack:
         position = stack.pop()
-        if basin[position] == 1:
-            basin[position] = indicator
-            stack |= set(neighbour_indexes(*position, map_shape))
-    return (basin == indicator).astype(int)
+        if basins_map[position] == 1:
+            if this_basin[position] == 0:  # Avoid painting the same pixels infinitely!
+                stack |= set(neighbour_indexes(*position, map_shape))
+            this_basin[position] = 1
+    return this_basin
 
 
 def find_basins(height_map):
     map_shape = height_map.shape
-    basin_map = (height_map < 9).astype(int)
+    basins_map = (height_map < 9).astype(int)
     low_points = find_low_points(height_map)
 
     basins = []
@@ -78,8 +79,8 @@ def find_basins(height_map):
         if not low_point:
             continue
         low_point_coord = it.multi_index
-        basin = select_basin(basin_map, low_point_coord, map_shape)
-        basins.append(basin)
+        single_basin = select_basin(basins_map, low_point_coord, map_shape)
+        basins.append(single_basin)
     return basins
 
 
