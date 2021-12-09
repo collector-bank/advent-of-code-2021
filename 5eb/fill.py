@@ -1,3 +1,5 @@
+import numpy
+
 def fill(data, start_coords, fill_value):
     """
     from https://gist.github.com/JDWarner/1158a9515c7f1b1c21f1
@@ -17,19 +19,13 @@ def fill(data, start_coords, fill_value):
     -------
     None, ``data`` is modified inplace.
     """
+    new_layer = numpy.zeros(data.shape)
     xsize, ysize = data.shape
-    orig_value = data[start_coords[0], start_coords[1]]
-    
-    stack = set(((start_coords[0], start_coords[1]),))
-    if fill_value == orig_value:
-        raise ValueError("Filling region with same value "
-                     "already present is unsupported. "
-                     "Did you already fill this region?")
+    stack = set([start_coords])
 
     while stack:
         x, y = stack.pop()
-
-        if data[x, y] == orig_value:
+        if data[x, y] == 1:
             data[x, y] = fill_value
             if x > 0:
                 stack.add((x - 1, y))
