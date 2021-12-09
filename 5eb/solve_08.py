@@ -90,11 +90,15 @@ def decode_patterns(unique_signal_patterns):
     return translator
 
 
-def translate_output(unique_signal_patterns, output_value):
+def sort_segments(patterns):
+    return [''.join(sorted(pattern)) for pattern in patterns]
+
+
+def translate_output(unique_signal_patterns, output_value_patterns):
+    unique_signal_patterns = sort_segments(unique_signal_patterns)
+    output_value_patterns = sort_segments(output_value_patterns)
     translator = decode_patterns(unique_signal_patterns)
-    sorted_translator = {''.join(sorted(segments)): digit for (segments, digit) in translator.items()}
-    sorted_output_values = [''.join(sorted(segments)) for segments in output_value]
-    return int(''.join(str(sorted_translator[segments]) for segments in sorted_output_values))
+    return int(''.join(str(translator[segments]) for segments in output_value_patterns))
 
 
 def part2(filename):
