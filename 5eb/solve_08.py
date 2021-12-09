@@ -73,7 +73,7 @@ def translate_output(unique_signal_patterns, output_value_patterns):
     unique_signal_patterns = sort_segments(unique_signal_patterns)
     output_value_patterns = sort_segments(output_value_patterns)
     translator = decode_patterns(unique_signal_patterns)
-    return int(''.join(str(translator[segments]) for segments in output_value_patterns))
+    return int(''.join(str(translator[pattern]) for pattern in output_value_patterns))
 
 
 def part2(filename):
