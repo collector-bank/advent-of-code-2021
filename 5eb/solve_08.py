@@ -3,28 +3,11 @@ def read_input(filename):
         indata = filehandle.read().splitlines()
     return indata
 
-
-digit_segments = {
-    0: 'abcefg',
-    1: 'cf',
-    2: 'acdeg',
-    3: 'acdfg',
-    4: 'bcdf',
-    5: 'abdfg',
-    6: 'abdefg',
-    7: 'acf',
-    8: 'abcdefg',
-    9: 'abcdfg',
-}
 distinct_lengths = {
     2: 1,
     3: 7,
     4: 4,
     7: 8,
-}
-possible_by_length = {
-    6: {0, 6, 9},
-    5: {2, 3, 5},
 }
 
 
