@@ -4,8 +4,6 @@ import operator
 import numpy
 from numpy import array
 
-from fill import fill
-
 
 def read_input(filename):
     with open(filename) as filehandle:
@@ -58,19 +56,25 @@ def part1(filename):
 
 def find_basins(height_map):
     map_shape = height_map.shape
-    merged_basins = (height_map < 9).astype(int)
+    basin_map = (height_map < 9).astype(int)
     low_points = find_low_points(height_map)
 
-    low_point_counter = 1
     basins = []
     iterator = numpy.nditer(low_points, flags=['multi_index'])
     for low_point in iterator:
         if not low_point:
             continue
-        low_point_counter += 1
+        basin = basin_map.copy()
+        indicator = 2
         here = iterator.multi_index
-        fill(merged_basins, here, low_point_counter)
-        basins.append((merged_basins == low_point_counter).astype(int))
+
+        stack = {here}
+        while stack:
+            position = stack.pop()
+            if basin[position] == 1:
+                basin[position] = indicator
+                stack |= set(neighbour_indexes(*position, map_shape))
+        basins.append((basin == indicator).astype(int))
     return basins
 
 
