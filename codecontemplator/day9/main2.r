@@ -1,20 +1,10 @@
-# https://stackoverflow.com/questions/35772846/obtaining-connected-components-in-r
-# https://rdrr.io/cran/raster/man/clump.html
-
-#library(igraph)
 library(raster)
 
-d <- read.table("input_sample.txt", header = FALSE)
+m <- read.table("input.txt", header = FALSE)
 
-rmat <- raster(d != 9)
+clumps <- as.matrix(clump(raster(m != 9), directions = 4))
+nclumps <- max(clumps, na.rm = TRUE)
 
-clumps <- as.matrix(clump(rmat, directions=4))
-#plot(Clumps)
+func <- function(i) { nrow(which(clumps == i, arr.ind = TRUE)) }
 
-tot <- max(clumps, na.rm=TRUE)
-
-func <- function(i) { 
-    nrow(which(clumps == i, arr.ind = TRUE))
-}
-
-prod(sort(Vectorize(func)(1:tot), decreasing = TRUE)[1:3])
+prod(sort(Vectorize(func)(1:nclumps), decreasing = TRUE)[1:3]) # 920448
