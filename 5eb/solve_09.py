@@ -15,24 +15,31 @@ def parse_input(lines):
     return array([array(list(line)) for line in lines]).astype(int)
 
 
+def neighbour_indexes(row, col, shape):
+    rows, cols = shape
+    indexes = []
+    for rel in [-1, 1]:
+        vertical_index = row + rel
+        if vertical_index in range(rows):
+            indexes.append((vertical_index, col))
+        horizontal_index = col + rel
+        if horizontal_index in range(cols):
+            indexes.append((row, horizontal_index))
+    return indexes
+
+
 def find_low_points(height_map):
-    low_points = numpy.zeros(height_map.shape, dtype=bool)
+    low_points = numpy.zeros(height_map.shape, dtype=int)
     for level in range(10):
-        for i, line in enumerate(height_map):
-            for j, point in enumerate(line):
-                if point == level:
-                    neighbours = []
-                    for nb_index in [-1, 1]:
-                        vertical_index = i + nb_index
-                        if vertical_index in range(height_map.shape[0]):
-                            vertical_nb = height_map[vertical_index, j]
-                            neighbours.append(vertical_nb)
-                        horizontal_index = i + nb_index
-                        if horizontal_index in range(height_map.shape[1]):
-                            vertical_nb = height_map[i + nb_index, j]
-                            neighbours.append(vertical_nb)
-                    if (array(neighbours) > level).all():
-                        low_points[i, j] = True
+        iterator = numpy.nditer(height_map, flags=['multi_index'])
+        for point in iterator:
+            row, col = iterator.multi_index
+            if point == level:
+                neighbours = []
+                for nb_index in neighbour_indexes(row, col, height_map.shape):
+                    neighbours.append(height_map[nb_index])
+                if (array(neighbours) > level).all():
+                    low_points[row, col] = 1
     return low_points
 
 
@@ -47,10 +54,14 @@ def part1(filename):
     return total_risk_level(height_map)
 
 
+def find_basins(height_map):
+    basins = []
+    low_points = find_low_points(height_map) * 1
+    nines = (height_map == 9).astype(int)
+
 
 def part2(filename):
     height_map = parse_input(read_input(filename))
-    low_points = find_low_points(height_map)
     basin_sizes = [9, 14, 9]
     return functools.reduce(operator.mul, basin_sizes)
 
