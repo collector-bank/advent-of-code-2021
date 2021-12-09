@@ -60,8 +60,7 @@ def decode_patterns(unique_signal_patterns):
     reverse = {}
 
     for pattern in unique_signal_patterns:
-        pattern_length = len(pattern)
-        digit = distinct_lengths.get(pattern_length)
+        digit = distinct_lengths.get(len(pattern))
         if digit:
             translator[pattern] = digit
             reverse[digit] = pattern
@@ -94,8 +93,8 @@ def decode_patterns(unique_signal_patterns):
 def translate_output(unique_signal_patterns, output_value):
     translator = decode_patterns(unique_signal_patterns)
     sorted_translator = {''.join(sorted(segments)): digit for (segments, digit) in translator.items()}
-    sorted_outputs = [''.join(sorted(segments)) for segments in output_value]
-    return int(''.join(str(sorted_translator[segments]) for segments in sorted_outputs))
+    sorted_output_values = [''.join(sorted(segments)) for segments in output_value]
+    return int(''.join(str(sorted_translator[segments]) for segments in sorted_output_values))
 
 
 def part2(filename):
