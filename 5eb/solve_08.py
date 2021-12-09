@@ -1,5 +1,4 @@
 from collections import defaultdict
-import pytest
 
 
 def read_input(filename):
@@ -58,7 +57,6 @@ def part1(filename):
     return total_identified
 
 
-
 def decode_patterns(unique_signal_patterns):
     translator = {}
     reverse = {}
@@ -77,7 +75,6 @@ def decode_patterns(unique_signal_patterns):
     for pattern in unique_signal_patterns:
         if pattern in translator:
             continue
-        possible_digits = possible_by_length[len(pattern)]
         pat = set(pattern)
         if len(pattern) == 5:  # {2, 3, 5}
             if cf.issubset(pat):
@@ -93,7 +90,6 @@ def decode_patterns(unique_signal_patterns):
                 translator[pattern] = 0
             elif bd.issubset(pat):
                 translator[pattern] = 6
-
     return translator
 
 
