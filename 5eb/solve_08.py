@@ -42,10 +42,8 @@ def parse_line(line):
 
 
 def guess_digit_from_len(input_segments):
-    candidate_digits = lenseg_digits[len(input_segments)]
-    if len(candidate_digits) == 1:
-        candidate_digit, = candidate_digits
-        return candidate_digit
+    digit = distinct_lengths.get(len(input_segments))
+    return digit
 
 
 def part1(filename):
