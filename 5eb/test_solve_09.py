@@ -18,6 +18,17 @@ def test_parse_input():
     assert arr[0, 0] == 2
     assert arr[-1, -1] == 8
 
+
+class TestNeighbourIndexes:
+
+    def test_neighbour_indexes(self):
+        assert neighbour_indexes(0, 0, (0, 0)) == []
+        assert neighbour_indexes(0, 0, (1, 1)) == []
+        assert neighbour_indexes(0, 0, (3, 3)) == [(1, 0), (0, 1)]
+        assert neighbour_indexes(1, 1, (3, 3)) == [(0, 1), (1, 0), (2, 1), (1, 2)]
+        assert neighbour_indexes(2, 2, (3, 3)) == [(1, 2), (2, 1)]
+
+
 class TestFindLowPoint:
 
     def test_find_low_points_contained(self):

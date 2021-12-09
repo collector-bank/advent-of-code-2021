@@ -33,8 +33,8 @@ def find_low_points(height_map):
     for level in range(10):
         iterator = numpy.nditer(height_map, flags=['multi_index'])
         for point in iterator:
-            row, col = iterator.multi_index
             if point == level:
+                row, col = iterator.multi_index
                 neighbours = []
                 for nb_index in neighbour_indexes(row, col, height_map.shape):
                     neighbours.append(height_map[nb_index])
