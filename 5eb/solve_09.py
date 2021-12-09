@@ -31,7 +31,6 @@ def find_low_points(height_map):
                         if horizontal_index in range(height_map.shape[1]):
                             vertical_nb = height_map[i + nb_index, j]
                             neighbours.append(vertical_nb)
-                    print(array(neighbours))
                     if (array(neighbours) > level).all():
                         low_points[i, j] = True
     return low_points
