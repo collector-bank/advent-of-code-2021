@@ -20,7 +20,7 @@ def test_parse_input():
 
 class TestFindLowPoint:
 
-    def test_find_low_points(self):
+    def test_find_low_points_contained(self):
         height_map = array([
             [2, 2, 2],
             [2, 1, 2],
@@ -30,9 +30,8 @@ class TestFindLowPoint:
             [0, 0, 0],
             [0, 1, 0],
             [0, 0, 0],
-        ])
+        ]).astype(bool)
         assert (find_low_points(height_map) == expected).all()
-
 
     def test_find_low_points_edge(self):
         height_map = array([
@@ -40,10 +39,23 @@ class TestFindLowPoint:
             [2, 2],
         ])
         expected = array([
-            [True, False],
-            [False, False],
+            [1, 0],
+            [0, 0],
         ])
-        assert (find_low_points(height_map) == expected).all()
+        assert (find_low_points(height_map).astype(int) == expected).all()
+
+    def test_find_low_points_no_diagonal_leaking(self):
+        height_map = array([
+            [1, 3, 1],
+            [3, 2, 3],
+            [1, 3, 1],
+        ])
+        expected = array([
+            [1, 0, 1],
+            [0, 1, 0],
+            [1, 0, 1],
+        ])
+        assert (find_low_points(height_map).astype(int) == expected).all()
 
 
 def test_total_risk_level_input1():
