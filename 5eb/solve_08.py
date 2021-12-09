@@ -3,6 +3,7 @@ def read_input(filename):
         indata = filehandle.read().splitlines()
     return indata
 
+
 distinct_lengths = {
     2: 1,
     3: 7,
