@@ -1,4 +1,5 @@
 m <- read.table("input.txt")
+m <- cbind(NA, rbind(NA, m, NA), NA) # pad with N/A to avoid trouble at edges
 
 num_steps <- 100
 flashc <- 0
@@ -33,11 +34,11 @@ for (i in 1:num_steps) {
         row <- rowSums(expand.grid(flashi[, 1], dv[, 1]))
         col <- rowSums(expand.grid(flashi[, 2], dv[, 2]))
         ns <- cbind(row, col)
-        rows <- ns[, 1] >= 1 &
-                ns[, 1] <= nrow(m) &
-                ns[, 2] >= 1 &
-                ns[, 2] <= ncol(m)
-        ns <- ns[rows, ]
+        #rows <- ns[, 1] >= 1 &
+        #        ns[, 1] <= nrow(m) &
+        #        ns[, 2] >= 1 &
+        #        ns[, 2] <= ncol(m)
+        #ns <- ns[rows, ]
 
         # m[ns] < m[ns] + 1 does not work since ns contains duplicates
         for (i in 1:nrow(ns)) {
