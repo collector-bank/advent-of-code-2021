@@ -24,7 +24,7 @@ take_step <- function(m) {
             break;
 
         # flash! - increment neigbours of flashing cells
-        dv <- expand.grid(-1:1, -1:1)  # incudes [0,0] but it does not matter
+        dv <- expand.grid(-1:1, -1:1)  # includes [0,0] but it does not matter
         row <- rowSums(expand.grid(flashi[, 1], dv[, 1]))
         col <- rowSums(expand.grid(flashi[, 2], dv[, 2]))
         ns <- cbind(row, col)
