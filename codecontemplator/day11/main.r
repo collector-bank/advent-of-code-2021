@@ -3,8 +3,7 @@ take_step <- function(m) {
     m <- m + 1
 
     # keep track of flashed cells
-    mask <- m
-    mask[, ] <- 1
+    mask <- matrix(1, nrow(m), ncol(m))
     flashc <- 0
 
     # repeat until no more flashes
@@ -79,3 +78,4 @@ m <- read.table("input.txt")
 
 solve_part_1(m) # 1673
 solve_part_2(m) # 279
+
