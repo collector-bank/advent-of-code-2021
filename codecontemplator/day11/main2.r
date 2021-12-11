@@ -1,7 +1,6 @@
 m <- read.table("input.txt")
 
 step <- 0
-flashc <- 0
 
 repeat {
     step <- step + 1
@@ -45,14 +44,12 @@ repeat {
             v <- ns[i, ]
             m[v[1], v[2]] <- m[v[1], v[2]] + 1
         }
-
-        # keep track of number of flashes
-        flashc <- flashc + nrow(flashi)
     }
 
     # reset flashed cells
     m[mask == 0] <- 0
 
+    # we are done if all cells are zero
     if (sum(m != 0) == 0)
         break;
 }
