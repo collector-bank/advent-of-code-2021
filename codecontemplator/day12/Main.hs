@@ -76,22 +76,25 @@ getPaths (Checkpoint cave paths) = map (cave:) (concat paths)
 parseLine :: String -> (Cave, Cave)
 parseLine s =
     let
-        startName = takeWhile (/= '-') s
-        endName = tail $ dropWhile (/= '-') s
+        startName   = takeWhile        (/= '-') s
+        endName     = tail $ dropWhile (/= '-') s
         toCave name =
             case name of
                 "start" -> Start
-                "end" -> End
-                _ -> Other name
+                "end"   -> End
+                _       -> Other name
     in
         (toCave startName, toCave endName)
 
 main = do
     segments <- map parseLine . lines <$> readFile "input.txt"
+    
     let undirected = segments <> map swap segments
-    let graph = foldr (\(a,b) s -> Map.insertWith (<>) a [b] s) Map.empty undirected
-    let mkSeed = Seed Start graph
-    let result1 = hylo getPaths buildSearchTree (mkSeed (empty :: VisitSmallCavesOnceOnly))
+    let graph      = foldr (\(a,b) s -> Map.insertWith (<>) a [b] s) Map.empty undirected
+    let mkSeed     = Seed Start graph
+
+    let result1 = hylo getPaths buildSearchTree $ mkSeed (empty :: VisitSmallCavesOnceOnly)
     printf "result1 = %d\n" (length result1)  -- 4495
-    let result2 = hylo getPaths buildSearchTree (mkSeed (empty :: AllowOneSmallCaveTwice))
+    
+    let result2 = hylo getPaths buildSearchTree $ mkSeed (empty :: AllowOneSmallCaveTwice)
     printf "result2 = %d\n" (length result2)  -- 131254
