@@ -8,7 +8,7 @@ var type = typeof(IDay<>);
 
 var interfaces = type.Assembly.GetTypes()
   .SelectMany(t => t.GetInterfaces())
-  .Where(t => t.GetGenericTypeDefinition() == type)
+  .Where(t => t.IsGenericType && t.GetGenericTypeDefinition() == type)
   .Distinct()
   .ToList();
 
