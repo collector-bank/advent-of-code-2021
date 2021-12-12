@@ -41,16 +41,16 @@ instance CaveStore VisitSmallCavesOnceOnly where
     isForbidden c (VisitSmallCavesOnceOnly s) = Set.member c s
     register cave (VisitSmallCavesOnceOnly s) = VisitSmallCavesOnceOnly $ if isSmall cave then Set.insert cave s else s
 
-data AllowOneSmallCaveTwice = AllowOneSmallCaveTwice (Maybe Cave) (Set Cave)
+data AllowOneSmallCaveTwice = AllowOneSmallCaveTwice Bool (Set Cave)
 
 instance CaveStore AllowOneSmallCaveTwice where
-    empty = AllowOneSmallCaveTwice Nothing Set.empty     
-    isForbidden c (AllowOneSmallCaveTwice mc s) =  Set.member c s && (Maybe.isJust mc  || c == Start)
-    register cave (AllowOneSmallCaveTwice mc s) = 
+    empty = AllowOneSmallCaveTwice False Set.empty     
+    isForbidden c (AllowOneSmallCaveTwice exceptionMade s) = Set.member c s && (exceptionMade || c == Start)
+    register cave (AllowOneSmallCaveTwice exceptionMade s) = 
             case (isSmall cave, Set.member cave s) of
-                (False, _) -> AllowOneSmallCaveTwice mc s
-                (True, True) -> AllowOneSmallCaveTwice (Just cave) s
-                (True, False) -> AllowOneSmallCaveTwice mc (Set.insert cave s)
+                (False, _    ) -> AllowOneSmallCaveTwice exceptionMade s
+                (True , True ) -> AllowOneSmallCaveTwice True          s
+                (True , False) -> AllowOneSmallCaveTwice exceptionMade (Set.insert cave s)
 
 data Seed store = Seed { _current :: Cave, _continuations :: Map Cave [Cave], _forbidden :: store }
 
