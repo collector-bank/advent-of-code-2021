@@ -1,5 +1,5 @@
 {-# LANGUAGE DeriveFunctor #-}
-{-# LANGUAGE FlexibleInstances #-}
+--- {-# LANGUAGE FlexibleInstances #-}
 
 import Data.Set (Set)
 import qualified  Data.Set as Set
@@ -9,7 +9,6 @@ import Data.Maybe (Maybe)
 import qualified  Data.Maybe as Maybe
 import Data.Char (toLower)
 import Data.Tuple (swap)
-import Debug.Trace (trace)
 import Text.Printf (printf)
 
 type Coalgebra f a = a -> f a
@@ -20,10 +19,12 @@ hylo f g = f . fmap (hylo f g) . g
 
 data Cave = Start | End | Other String deriving (Eq, Ord)
 
+{-
 instance Show Cave where
     show Start = "start"
     show End = "end"
     show (Other x) = x
+-}
 
 isSmall :: Cave -> Bool
 isSmall (Other caveId) = caveId == map toLower caveId
@@ -94,5 +95,4 @@ main = do
     let result1 = hylo getPaths buildSearchTree (mkSeed (empty :: VisitSmallCavesOnceOnly))
     printf "result1 = %d\n" (length result1)  -- 4495
     let result2 = hylo getPaths buildSearchTree (mkSeed (empty :: AllowOneSmallCaveTwice))
-    --mapM_ print result2
     printf "result2 = %d\n" (length result2)  -- 131254
