@@ -101,10 +101,22 @@ namespace AdventOfCode
 
       foreach (var instruction in instructions)
       {
-        grid = Fold(grid, instruction);
+        //grid = Fold(grid, instruction);
+        points = Fold(points, instruction);
       }
 
-      return "\n" + string.Join("\n" ,grid.Select(row => string.Join("", row.Select(cell => {
+      var tempGrid = new int[points.Max(p=>p.Y) + 1][];
+      for (i = 0; i < tempGrid.Length; i++)
+      {
+        tempGrid[i] = new int[points.Max(p => p.X) + 1];
+      }
+
+      foreach (var point in points)
+      {
+        tempGrid[point.Y][point.X] = 1;
+      }
+
+      return "\n" + string.Join("\n" ,tempGrid.Select(row => string.Join("", row.Select(cell => {
         if (cell == 0)
           return " ";
         else
@@ -178,6 +190,28 @@ namespace AdventOfCode
           }
         }
 
+      }
+
+      return newList;
+    }
+
+    private List<Point> Fold(List<Point> points, Instruction instruction)
+    {
+      List<Point> newList = new List<Point>();
+
+      if (instruction.Direction == "x")
+      {
+        newList.AddRange(points.Where(p => p.X < instruction.Coordinate));
+        newList.AddRange(points.Where(p => p.X > instruction.Coordinate).Select(p => {
+          return new Point() { X = instruction.Coordinate - (p.X - instruction.Coordinate), Y = p.Y };
+        }));
+      }
+      else
+      {
+        newList.AddRange(points.Where(p => p.Y < instruction.Coordinate));
+        newList.AddRange(points.Where(p => p.Y > instruction.Coordinate).Select(p => {
+          return new Point() { X = p.X, Y = instruction.Coordinate - (p.Y - instruction.Coordinate) };
+        }));
       }
 
       return newList;

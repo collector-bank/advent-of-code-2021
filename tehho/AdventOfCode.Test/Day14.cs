@@ -6,29 +6,29 @@ using System;
 namespace adventofcode2021.Test
 {
   [TestClass]
-  public class TestDay13
+  public class TestDay14
   {
-    private IDay<string> day;
+    private IDay<long> day;
     private string[] data;
 
-    public TestDay13()
+    public TestDay14()
     {
-      day = new Day13();
+      day = new Day14();
       data = File.ReadAllLines(day.Folder + "/data.test");
     }
 
     [TestMethod]
     public void Logic1()
     {
-      var expected = 17;
-      var result = int.Parse(day.Logic(data));
+      var expected = 1588;
+      var result = day.Logic(data);
       Assert.AreEqual(expected, result);
     }
 
     [TestMethod]
     public void Logic2()
     {
-      var expected = "\n#####\n#   #\n#   #\n#   #\n#####";
+      var expected = 2188189693529;
       var result = day.Logic2(data);
       Assert.AreEqual(expected, result);
     }
