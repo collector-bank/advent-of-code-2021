@@ -1,9 +1,6 @@
 {-# LANGUAGE DeriveFunctor #-}
 {-# LANGUAGE LambdaCase #-}
 
-import Debug.Trace (trace)
-import Data.Text.Internal.Read (IParser(runP))
-
 type BinVec = [Bool]
 
 -- showBv :: [Bool] -> String
@@ -151,10 +148,8 @@ pPacket = do
     version <- pVersion
     typeId <- pTypeId
     case typeId of
-        4 -> -- literal
-            Packet version typeId <$> pLiteral
-        _ -> -- operator
-            Packet version typeId <$> pOperator (typeId2Op typeId)
+        4 -> Packet version typeId <$> pLiteral
+        _ -> Packet version typeId <$> pOperator (typeId2Op typeId)
 
 
 parse :: String -> Maybe Packet
