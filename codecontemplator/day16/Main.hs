@@ -6,8 +6,8 @@ import Data.Text.Internal.Read (IParser(runP))
 
 type BinVec = [Bool]
 
-showBv :: [Bool] -> String
-showBv xs = foldr (\ x -> (:) (if x then '1' else '0')) "" xs
+-- showBv :: [Bool] -> String
+-- showBv xs = foldr (\ x -> (:) (if x then '1' else '0')) "" xs
 
 hex2bin :: Char -> BinVec
 hex2bin d = map (=='1') $
