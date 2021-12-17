@@ -1,6 +1,8 @@
 {-# LANGUAGE DeriveFunctor #-}
 {-# LANGUAGE LambdaCase #-}
 
+import qualified Control.Monad as Monad
+
 type BinVec = [Bool]
 
 -- showBv :: [Bool] -> String
@@ -40,15 +42,9 @@ newtype Parser a = Parser (BinVec -> Maybe (BinVec, a)) deriving Functor
 
 instance Applicative Parser where
     pure a = Parser (\bv -> Just (bv, a))
-    (Parser fab) <*> (Parser fa) =
-        Parser $
-            \bv ->
-                case (fab bv, fa bv) of
-                    (Just (bv',fab'), Just (_,fa')) -> Just (bv', fab' fa')  -- does this make sense?
-                    _  -> Nothing
+    (<*>) = Monad.ap
 
 instance Monad Parser where
-    return = pure
     (Parser p) >>= f =
             Parser $
                 \bc -> case p bc of
@@ -95,7 +91,6 @@ pBitVector n = do
     b <- pBit
     bs <- pBitVector (n-1)
     return $ b : bs
-
 
 pVersion :: Parser Int
 pVersion = bin2dec <$> pBitVector 3
@@ -151,13 +146,10 @@ pPacket = do
         4 -> Packet version typeId <$> pLiteral
         _ -> Packet version typeId <$> pOperator (typeId2Op typeId)
 
-
 parse :: String -> Maybe Packet
 parse hex =
-    let
-        bin = concatMap hex2bin hex
-    in
-        runParser bin pPacket
+    let bin = concatMap hex2bin hex
+    in runParser bin pPacket
 
 --test1 = runParser [True,False,True,False] pVersion
 --test2 = parse "D2FE28"  -- Packet 6 4 (Literal 2021)
