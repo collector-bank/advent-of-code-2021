@@ -23,11 +23,11 @@ add a b = reduce $ Pair a b
 reduce :: Number -> Number
 reduce n =
     case explode n of
-        (n', True) -> reduce n'
-        (_, False) ->
+        (n', True ) -> reduce n'
+        (_ , False) ->
             case split n of
-                (n', True) -> reduce n'
-                (_, False) -> n
+                (n', True ) -> reduce n'
+                (_ , False) -> n
 
 explode :: Number -> (Number, Bool)
 explode n = case go 0 n of (n', _ , _, found) -> (n', found)
@@ -38,16 +38,16 @@ explode n = case go 0 n of (n', _ , _, found) -> (n', found)
             if depth >= 4 then
                 (Regular 0, Just a, Just b, True)
             else
-                (n, Nothing , Nothing , False)
+                (n, Nothing, Nothing, False)
         go depth (Pair a b) =
             case go (depth+1) a of
-                (a', inl, Just x , True  ) -> (Pair a' (incLeft b x), inl, Nothing , True)
-                (a', inl, Nothing, True  ) -> (Pair a' b            , inl, Nothing , True)
-                (_ , _  ,       _, False ) ->
+                (a', inl, Just x , True ) -> (Pair a' (incLeft b x), inl, Nothing , True)
+                (a', inl, Nothing, True ) -> (Pair a' b            , inl, Nothing , True)
+                (_ , _  ,       _, False) ->
                     case go (depth+1) b of
-                        (b', Just x , inr, True)  -> (Pair (incRight a x) b', Nothing , inr, True      )
-                        (b', Nothing, inr, True)  -> (Pair a b'             , Nothing , inr, True      )
-                        (_ , _      , _  , False) -> (Pair a b              , Nothing , Nothing , False)
+                        (b', Just x , inr, True ) -> (Pair (incRight a x) b', Nothing, inr    , True)
+                        (b', Nothing, inr, True ) -> (Pair a b'             , Nothing, inr    , True)
+                        (_ , _      , _  , False) -> (Pair a b              , Nothing, Nothing, False)
 
         incLeft :: Number -> Int -> Number
         incLeft (Regular x) i = Regular (x + i)
@@ -66,18 +66,18 @@ split n@(Regular x) =
         (n, False)
 split (Pair a b) =
     case split a of
-        (a', True) -> (Pair a' b, True)
+        (a', True ) -> (Pair a' b, True)
         (_ , False) ->
             case split b of
                 (b', True) -> (Pair a b', True)
-                _ -> (Pair a b, False)
+                _          -> (Pair a b, False)
 
 sumN :: [Number] -> Number
 sumN = foldl1 add
 
 magnitude :: Number -> Int
 magnitude (Regular x) = x
-magnitude (Pair a b) = 3 * magnitude a + 2 * magnitude b
+magnitude (Pair a b)  = 3 * magnitude a + 2 * magnitude b
 
 maxMag :: [Number] -> Int
 maxMag ns = 
