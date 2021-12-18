@@ -56,11 +56,11 @@ explode n = case go 0 n of (n', _ , _, found) -> (n', found)
                         (_ , _        , _  , False) -> (Pair a b              , NoneL, NoneR, False)
 
         incLeft :: Number -> Int -> Number
-        incLeft (Regular x) i = {-trace ("incLeft("++show x ++","++show i++")")-} (Regular (x + i))
+        incLeft (Regular x) i = Regular (x + i)
         incLeft (Pair a b) i = Pair (incLeft a i) b
 
         incRight :: Number -> Int -> Number
-        incRight (Regular x) i = {-trace ("incRight("++show x ++","++show i++")")-} (Regular (x + i))
+        incRight (Regular x) i = Regular (x + i)
         incRight (Pair a b) i = Pair a (incRight b i)
 
 
