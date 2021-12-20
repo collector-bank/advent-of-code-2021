@@ -40,7 +40,7 @@ namespace adventofcode2021.Test
       {
         var temp = data[i].Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
         var expected = long.Parse(temp[1]);
-        var result = day.Logic(new string[] {temp[0]});
+        var result = day.Logic2(new string[] {temp[0]});
         Assert.AreEqual(expected, result);
       }
     }
