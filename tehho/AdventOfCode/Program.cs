@@ -17,6 +17,11 @@ var types = type.Assembly.GetTypes()
   .Where(p => interfaces.Any(i => i.IsAssignableFrom(p)) && !p.IsInterface && !p.IsAbstract)
   .ToList();
 
+// var temp = new Day20();
+// var data = File.ReadAllLines("../data/" + temp.Folder + "/data.raw");
+// Console.WriteLine(temp.Logic(data));
+// Console.WriteLine(temp.Logic2(data));
+
 foreach (var genericType in types)
 {
   try
