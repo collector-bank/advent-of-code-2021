@@ -1,6 +1,3 @@
-let x = 444356092776315
-console.log(x)
-
 function Die() {
     this.count = 0
     this.numRolls = 0
