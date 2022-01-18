@@ -90,11 +90,7 @@ lowerBoundEnergyToMoveToHomeAll gs =
 canMoveIntoTargetSideRoom :: Board -> Amphipod -> [Amphipod] -> Bool
 canMoveIntoTargetSideRoom board (p@(x,_),t) rest =
     let
-        xt = case t of
-                A -> 3
-                B -> 5
-                C -> 7
-                D -> 9
+        xt = targetX t
         xs
           | xt < x = [xt..x-1]
           | xt > x = [x+1..xt]
@@ -108,11 +104,7 @@ canMoveIntoTargetSideRoom board (p@(x,_),t) rest =
 finishSelected :: Board -> Amphipod -> [Amphipod] -> (Energy,Position)
 finishSelected board selected@(p@(x,_),t) rest =
     let
-        xt = case t of
-                A -> 3
-                B -> 5
-                C -> 7
-                D -> 9
+        xt = targetX t
         xs
           | xt < x = [xt..x-1]
           | xt > x = [x+1..xt]
